@@ -12,11 +12,7 @@ This project was built as a prototype for the Unitary Foundation's microgrant pr
 
 This project is Step 1.
 
-The big plan? The ArQuive is slated to be the flagship project of **The EQR Theorem** - a non-profit I'm launching with my friend, **Eshika Tripura Puja**, to build more stuff like this.
-
-<p style= "align: center;">
-  <img src="public/eqr-logo.png" alt="The EQR Theorem Logo" width="200">
-</p>
+The big plan? The ArQuive is slated to be the flagship project of <img src="public/eqr-logo.png" alt="EQR Theorem Logo" width="20" height="20" style="vertical-align: middle;"> **The EQR Theorem** - a non-profit I'm launching with my friend, **Eshika Tripura Puja**, to build more stuff like this.
 
 ---
 
