@@ -41,3 +41,34 @@ a:hover {
   list-style: none;
   padding: 0;
 }
+
+.site-footer {
+  margin-top: 6rem;
+  padding-top: 2rem;
+  border-top: 1.5px solid #c5c5c5;
+  text-align: center;
+  font-family: "Inter", sans-serif; /* Use the modern sans-serif for UI elements */
+  font-size: 0.9rem;
+  color: #888; /* A muted color for secondary info */
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.footer-nav {
+  margin-top: 0.5rem;
+}
+
+.footer-nav a {
+  color: #666; /* Slightly darker than the text for better contrast */
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+}
+
+.footer-nav span {
+  margin: 0 0.5rem; /* The bullet separator */
+}

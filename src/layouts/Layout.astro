@@ -6,13 +6,17 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const currentYear = new Date().getFullYear();
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta
+      name="description"
+      content="The ArQuive is an open-source platform that surfaces the latest unsolved problems from arXiv's quantum science papers, connecting researchers to their next project and to each other"
+    />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
@@ -22,5 +26,18 @@ const { title } = Astro.props;
     <!-- The <slot /> tag is the magic part. All content from index.astro -->
     <!-- will be injected right here. -->
     <slot />
+    <!-- --- FOOTER BLOCK --- -->
+    <footer class="site-footer">
+      <p>
+        &copy; {currentYear} The ArQuive. An open-source project.
+      </p>
+      <nav class="footer-nav">
+        <a
+          href="https://github.com/The-EQR-Theorem/The-arQuive"
+          target="_blank"
+          rel="noopener noreferrer">View Source on GitHub</a
+        >
+      </nav>
+    </footer>
   </body>
 </html>
