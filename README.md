@@ -8,11 +8,11 @@ This project was built as a prototype for the Unitary Foundation's microgrant pr
 
 ### ✨ A Note from the Creator(s)
 
-**Hi, I'm Nafisa Shamim Rafa, and I conceived, designed, and built The ArQuive.** I'm passionate about quantum science and making cool, open-source tools that researchers will actually use.
+**Hi, I'm [Nafisa Shamim Rafa](https://github.com/CreativeBinBag), and I conceived, designed, and built The ArQuive.** I'm passionate about quantum science and making cool, open-source tools that researchers will actually use.
 
 This project is Step 1.
 
-The big plan? The ArQuive is slated to be the flagship project of <img src="public/eqr-logo.png" alt="EQR Theorem Logo" width="20" height="20" style="vertical-align: middle;"> **The EQR Theorem** - a non-profit I'm launching with my friend, **Eshika Tripura Puja**, to build more stuff like this.
+The big plan? The ArQuive is slated to be the flagship project of <img src="public/eqr-logo.png" alt="EQR Theorem Logo" width="20" height="20" style="position: relative; top: 4px; margin: 0 4px;"> **The EQR Theorem** - a non-profit I'm launching with my friend, **Eshika Tripura Puja**, to build more stuff like this.
 
 ---
 
