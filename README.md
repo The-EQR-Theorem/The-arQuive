@@ -14,6 +14,10 @@ This project is Step 1.
 
 The big plan? The ArQuive is slated to be the flagship project of **The EQR Theorem** - a non-profit I'm launching with my friend, **Eshika Tripura Puja**, to build more stuff like this.
 
+<p style= "align: center;">
+  <img src="public/eqr-logo.png" alt="The EQR Theorem Logo" width="200">
+</p>
+
 ---
 
 ### What This Thing Actually Does
