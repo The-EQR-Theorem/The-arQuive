@@ -1,0 +1,147 @@
+---
+type Problem = {
+  id: number;
+  problem_statement: string;
+  source_paper_title: string;
+  arxiv_id: string;
+  authors: string[] | string | null;
+  tags: string[] | string | null;
+  submitters: { name: string } | null;
+};
+
+const { problem } = Astro.props as { problem: Problem };
+
+// This is a robust function to guarantee we always have a clean array of strings.
+// We can reuse it for both tags and authors.
+function parseArrayFromString(data: string[] | string | null): string[] {
+  if (Array.isArray(data)) return data;
+  if (typeof data === "string") {
+    // It's a string like "{Item1, Item2}", so we clean and parse it.
+    return data
+      .replace(/[{}"']/g, "")
+      .split(",")
+      .map((item) => item.trim())
+      .filter((item) => item);
+  }
+  return [];
+}
+
+const tags = parseArrayFromString(problem.tags);
+const authors = parseArrayFromString(problem.authors); // Use the same function for authors
+---
+
+<li class="problem-entry">
+  <p class="problem-statement">{problem.problem_statement}</p>
+
+  <p class="source-info">
+    <strong>Source:</strong>
+    <em>{problem.source_paper_title}. </em>
+    <a href={`https://arxiv.org/abs/${problem.arxiv_id}`} target="_blank">
+      arXiv:{problem.arxiv_id}
+    </a>
+  </p>
+
+  <!-- --- SECTION TO DISPLAY AUTHORS --- -->
+  {
+    authors.length > 0 && (
+      <p class="authors-list">
+        <strong>Authors:</strong> {authors.join(", ")}
+      </p>
+    )
+  }
+
+  <div class="meta-info">
+    {
+      tags.length > 0 && (
+        <div class="tags">
+          {tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )
+    }
+    <p class="submitter">
+      Submitted by: {problem.submitters?.name ?? "Community"}
+    </p>
+  </div>
+
+  <div class="margin-note">
+    <button class="interest-button" data-problem-id={problem.id}>
+      Express Interest
+    </button>
+  </div>
+</li>
+
+<style>
+  .problem-entry {
+    padding: 3rem 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .problem-statement {
+    font-size: 1.4rem;
+    line-height: 1.7;
+  }
+  .source-info {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    color: #555;
+    font-style: italic;
+  }
+
+  .authors-list {
+    margin-top: 0.75rem;
+    font-size: 1.1rem;
+    color: #666;
+  }
+
+  .meta-info {
+    margin-top: 1.5rem;
+  }
+  .tags {
+    margin-bottom: 1rem;
+  }
+  .tag {
+    display: inline-block;
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: #faf4f4;
+    color: #444;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+  .submitter {
+    font-size: 1rem;
+    color: #777;
+  }
+  .margin-note {
+    margin-top: 1.5rem;
+  }
+  .interest-button {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: transparent;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .interest-button:hover {
+    background: #333;
+    color: white;
+    border-color: #333;
+  }
+  .interest-button:disabled {
+    background: #f5f5f5;
+    color: #aaa;
+    cursor: not-allowed;
+    border-color: #eee;
+  }
+</style>

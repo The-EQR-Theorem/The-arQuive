@@ -1,0 +1,16 @@
+{
+  "name": "the-arquive",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.54.0",
+    "astro": "^5.12.8",
+    "papaparse": "^5.5.3"
+  }
+}

@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;700&display=swap");
+
+body {
+  font-family: "EB Garamond", serif;
+  line-height: 1.7;
+  background-color: #fdfaf4;
+  background-image: url("/paper-texture.jpg");
+  color: #333;
+  padding: 4rem 2rem;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Inter", sans-serif;
+  line-height: 1.2;
+}
+
+main {
+  max-width: 800px; /* This creates the "paper column" effect */
+  margin: 0 auto;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 2rem 0;
+}
+
+a {
+  color: #005a9c; /* A more academic blue */
+  text-decoration: none;
+  transition: text-decoration 0.2s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.problem-list {
+  list-style: none;
+  padding: 0;
+}

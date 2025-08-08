@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProblemEntry from "../components/ProblemEntry.astro";
+import { supabase } from "../lib/supabase";
+
+// fetch the initial list of problems on the server.
+const { data: problems, error } = await supabase
+  .from("problems")
+  .select("*, submitters(name)")
+  .order("created_at", { ascending: false });
+
+if (error) {
+  console.error("[SERVER ERROR] Error fetching problems:", error.message);
+}
+---
+
+<Layout title="The ArQuive">
+  <main>
+    <h1>The ArQuive</h1>
+    <h2>A Journal of Open Quantum Problems</h2>
+    <p><em>Volume 1, Issue 1 &mdash; August 2025</em></p>
+    <hr />
+    <h3>Abstract</h3>
+    <p class="abstract" style="font-size: 1.2rem;">
+      This document serves as a living repository of curated, unsolved problems
+      surfaced from the forefront of quantum science research. Its purpose is to
+      accelerate discovery by connecting researchers to their next project and
+      to each other. This is a community-driven artifact, and all code and data
+      are open-source.
+    </p>
+    <hr />
+
+    {
+      problems && problems.length > 0 ? (
+        <ol class="problem-list">
+          {problems.map((problem) => (
+            <ProblemEntry problem={problem} />
+          ))}
+        </ol>
+      ) : (
+        <p>No problems loaded. Please check the terminal for errors.</p>
+      )
+    }
+  </main>
+</Layout>
+
+<!-- 
+  We use `define:vars` to securely pass our API keys 
+  from the server (where import.meta.env works) to the client script.
+-->
+<script
+  type="module"
+  define:vars={{
+    supabaseUrl: import.meta.env.PUBLIC_SUPABASE_URL,
+    supabaseAnonKey: import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+  }}
+>
+  // Import the `createClient` function directly from a CDN.
+  // This is the modern way to use npm packages in the browser without a complex build step.
+  import { createClient } from "https://cdn.skypack.dev/@supabase/supabase-js";
+
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+  const interestButtons = document.querySelectorAll(".interest-button");
+
+  interestButtons.forEach((button) => {
+    button.addEventListener("click", async (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+
+      const problemId = target.dataset.problemId;
+      const email = prompt(
+        "To connect with others on this problem, please enter your email:"
+      );
+
+      if (email) {
+        const { error } = await supabase
+          .from("interests")
+          .insert({ problem_id: problemId, user_email: email });
+
+        if (error) {
+          alert("Error saving your interest: " + error.message);
+        } else {
+          alert(
+            "Thank you! We've recorded your interest. We will notify you if another researcher is interested in the same problem."
+          );
+          if (target instanceof HTMLButtonElement) {
+            target.disabled = true;
+          }
+          target.innerText = "[✓] Interested";
+        }
+      }
+    });
+  });
+</script>
